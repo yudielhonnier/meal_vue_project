@@ -1,25 +1,16 @@
 <template>
-    <div class="flex flex-col  p-8 ">
-      
-        <div class="flex gap-2 justify-center mt-2">
-        <router-link :to="{name:'byLetter',params:{letter}}" v-for="letter of letters" :key="letter">
-            {{ letter }}
-        </router-link>
-    </div>
-    </div>
-
+  <div class="flex flex-col p-8"></div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import store from '../store'
+import store from "../store";
 import axiosClient from "../config/axiosClient";
 
-const letters = 'ABCDEFGHIJKLMNOPGRSTUVWXYZ'.split('')
-const ingredients = ref([])
+const ingredients = ref([]);
 
-onMounted(async ()=>{
-   const response = await axiosClient.get('/list.php?i=list')
-   ingredients.value = response.data 
-})
+onMounted(async () => {
+  const response = await axiosClient.get("/list.php?i=list");
+  ingredients.value = response.data;
+});
 </script>
